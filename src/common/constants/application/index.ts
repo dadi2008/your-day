@@ -1,4 +1,4 @@
-import type { Language, Theme, TimeOfDay } from '../../types/application'
+import type { Language, Theme, TimeOfDay } from 'common/types/application'
 
 export const languages = ['uk', 'en'] as const satisfies readonly Language[]
 export const themes = ['light', 'dark'] as const satisfies readonly Theme[]

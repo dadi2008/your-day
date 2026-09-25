@@ -1,5 +1,5 @@
-import { magicParticleCount } from '../../../common/constants/animation'
-import type { MagicParticleFlight, MagicParticlePosition } from '../../../common/interfaces/animation'
+import { magicParticleCount } from 'common/constants/animation'
+import type { MagicParticleFlight, MagicParticlePosition } from 'common/interfaces/animation'
 
 export function getMagicParticlePosition(index: number): MagicParticlePosition {
   const perimeterProgress = index / magicParticleCount

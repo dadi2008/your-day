@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { onBeforeUnmount, onMounted, ref } from 'vue'
 import { gsap } from 'gsap'
-import { prefersReducedMotion } from '../../utils/animation'
+import { prefersReducedMotion } from 'utils/animation'
 import './MorningLight.css'
 
 const lightContainer = ref<HTMLElement>()

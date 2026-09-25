@@ -1,6 +1,6 @@
-import { floatingThoughtConfig } from '../../../common/constants/animation'
-import type { FloatingThought, GoldParticlePosition } from '../../../common/interfaces/animation'
-import { getRandomNumber } from '../../../utils/numbers'
+import { floatingThoughtConfig } from 'common/constants/animation'
+import type { FloatingThought, GoldParticlePosition } from 'common/interfaces/animation'
+import { getRandomNumber } from 'utils/numbers'
 
 export function getThoughtRadius(thought: FloatingThought): number {
   return Math.max(thought.width, thought.height) / 2 + floatingThoughtConfig.thoughtCollisionPadding

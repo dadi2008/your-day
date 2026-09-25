@@ -1,7 +1,7 @@
-import type { Wish } from '../../common/interfaces/quotes'
-import type { Language } from '../../common/types/application'
-import type { LocalizedWishes } from '../../common/types/quotes'
-import { baseWishes, wishAuthors, wishIntents, wishTemplates } from '../../data/wishes'
+import type { Wish } from 'common/interfaces/quotes'
+import type { Language } from 'common/types/application'
+import type { LocalizedWishes } from 'common/types/quotes'
+import { baseWishes, wishAuthors, wishIntents, wishTemplates } from 'data/wishes'
 
 export function buildWishes(language: Language): string[] {
   return [

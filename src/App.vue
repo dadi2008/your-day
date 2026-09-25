@@ -1,14 +1,14 @@
 <script setup lang="ts">
 import { computed, onBeforeUnmount, onMounted, ref, watch } from 'vue'
 import { storeToRefs } from 'pinia'
-import { dateFormatOptions, dateLocales, timeOfDayRefreshInterval } from './common/constants/application'
-import { translations } from './common/constants/translations'
-import AppHeader from './components/AppHeader/AppHeader.vue'
-import DailyWish from './components/DailyWish/DailyWish.vue'
-import MorningLight from './components/MorningLight/MorningLight.vue'
-import ThoughtStream from './components/ThoughtStream/ThoughtStream.vue'
-import { useWishStore } from './stores/wish'
-import { getTimeOfDay } from './utils/application'
+import { dateFormatOptions, dateLocales, timeOfDayRefreshInterval } from 'common/constants/application'
+import { translations } from 'common/constants/translations'
+import AppHeader from 'components/AppHeader/AppHeader.vue'
+import DailyWish from 'components/DailyWish/DailyWish.vue'
+import MorningLight from 'components/MorningLight/MorningLight.vue'
+import ThoughtStream from 'components/ThoughtStream/ThoughtStream.vue'
+import { useWishStore } from 'stores/wish'
+import { getTimeOfDay } from 'utils/application'
 
 const wishStore = useWishStore()
 const { language, theme, wish } = storeToRefs(wishStore)

@@ -6,17 +6,17 @@ import {
   floatingThoughtLanguageTransition,
   floatingThoughtOpacity,
   floatingThoughts,
-} from '../../common/constants/animation'
-import type { FloatingThought, GoldParticlePosition } from '../../common/interfaces/animation'
-import type { Language, Theme } from '../../common/types/application'
+} from 'common/constants/animation'
+import type { FloatingThought, GoldParticlePosition } from 'common/interfaces/animation'
+import type { Language, Theme } from 'common/types/application'
 import {
   getRandomThoughtVelocity,
   isThoughtOutsideStream,
   resolveGoldParticleCollisions,
   resolveThoughtCollisions,
-} from '../../helpers/animation/floatingThoughts'
-import { prefersReducedMotion } from '../../utils/animation'
-import { getRandomNumber } from '../../utils/numbers'
+} from 'helpers/animation/floatingThoughts'
+import { prefersReducedMotion } from 'utils/animation'
+import { getRandomNumber } from 'utils/numbers'
 import './ThoughtStream.css'
 
 const props = defineProps<{

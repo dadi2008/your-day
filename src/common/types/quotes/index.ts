@@ -1,3 +1,3 @@
-import type { Language } from '../application'
+import type { Language } from 'common/types/application'
 
 export type LocalizedWishes = Record<Language, string[]>

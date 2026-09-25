@@ -1,8 +1,8 @@
 <script setup lang="ts">
 import { computed } from 'vue'
-import { languages, themes } from '../../common/constants/application'
-import type { Translation } from '../../common/interfaces/application'
-import type { Language, Theme } from '../../common/types/application'
+import { languages, themes } from 'common/constants/application'
+import type { Translation } from 'common/interfaces/application'
+import type { Language, Theme } from 'common/types/application'
 import './AppHeader.css'
 
 const props = defineProps<{

@@ -1,5 +1,5 @@
-import type { Language } from '../../common/types/application'
-import type { LocalizedWishes } from '../../common/types/quotes'
+import type { Language } from 'common/types/application'
+import type { LocalizedWishes } from 'common/types/quotes'
 
 export const baseWishes: LocalizedWishes = {
   uk: [

@@ -1,9 +1,9 @@
 import { defineStore } from 'pinia'
-import { storageKeys } from '../common/constants/application'
-import { wishes } from '../common/constants/wishes'
-import type { Language } from '../common/types/application'
-import { getStoredLanguage, getStoredTheme } from '../helpers/application'
-import { createWish, getWishByIndex } from '../helpers/wishes'
+import { storageKeys } from 'common/constants/application'
+import { wishes } from 'common/constants/wishes'
+import type { Language } from 'common/types/application'
+import { getStoredLanguage, getStoredTheme } from 'helpers/application'
+import { createWish, getWishByIndex } from 'helpers/wishes'
 
 export const useWishStore = defineStore('wish', {
   state: () => {

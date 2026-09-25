@@ -9,6 +9,15 @@
     "allowImportingTsExtensions": true,
     "verbatimModuleSyntax": true,
     "moduleDetection": "force",
+    "baseUrl": "./src",
+    "paths": {
+      "common/*": ["common/*"],
+      "components/*": ["components/*"],
+      "data/*": ["data/*"],
+      "helpers/*": ["helpers/*"],
+      "stores/*": ["stores/*"],
+      "utils/*": ["utils/*"]
+    },
     "noEmit": true,
     "strict": true,
     "noUncheckedIndexedAccess": true,

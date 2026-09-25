@@ -1,11 +1,11 @@
 <script setup lang="ts">
 import { nextTick, onBeforeUnmount, onMounted, ref, watch } from 'vue'
 import { gsap } from 'gsap'
-import { magicParticleCount } from '../../common/constants/animation'
-import type { Translation } from '../../common/interfaces/application'
-import type { Wish } from '../../common/interfaces/quotes'
-import { getMagicParticleFlight, getMagicParticlePosition } from '../../helpers/animation/magicParticles'
-import { prefersReducedMotion } from '../../utils/animation'
+import { magicParticleCount } from 'common/constants/animation'
+import type { Translation } from 'common/interfaces/application'
+import type { Wish } from 'common/interfaces/quotes'
+import { getMagicParticleFlight, getMagicParticlePosition } from 'helpers/animation/magicParticles'
+import { prefersReducedMotion } from 'utils/animation'
 import './DailyWish.css'
 
 const props = defineProps<{

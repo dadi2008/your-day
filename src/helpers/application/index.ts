@@ -1,5 +1,5 @@
-import { defaultTheme, languages, storageKeys, themes } from '../../common/constants/application'
-import type { Language, Theme } from '../../common/types/application'
+import { defaultTheme, languages, storageKeys, themes } from 'common/constants/application'
+import type { Language, Theme } from 'common/types/application'
 
 export function getStoredLanguage(): Language {
   const storedLanguage = localStorage.getItem(storageKeys.language)

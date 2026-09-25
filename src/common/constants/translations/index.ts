@@ -1,4 +1,4 @@
-import type { LocalizedTranslations } from '../../types/application'
+import type { LocalizedTranslations } from 'common/types/application'
 
 export const translations: LocalizedTranslations = {
   uk: {

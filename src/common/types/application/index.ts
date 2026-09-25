@@ -1,4 +1,4 @@
-import type { Translation } from '../../interfaces/application'
+import type { Translation } from 'common/interfaces/application'
 
 export type Language = 'uk' | 'en'
 export type Theme = 'light' | 'dark'

@@ -1,5 +1,5 @@
-import type { Language, Theme } from '../../types/application'
-import type { FloatingThoughtId } from '../../types/animation'
+import type { Language, Theme } from 'common/types/application'
+import type { FloatingThoughtId } from 'common/types/animation'
 
 export const magicParticleCount = 18
 
