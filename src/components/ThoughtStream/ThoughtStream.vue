@@ -1,7 +1,12 @@
 <script setup lang="ts">
 import { nextTick, onBeforeUnmount, onMounted, ref, watch } from 'vue'
 import { gsap } from 'gsap'
-import { floatingThoughtConfig, floatingThoughtOpacity, floatingThoughts } from '../../common/constants/animation'
+import {
+  floatingThoughtConfig,
+  floatingThoughtLanguageTransition,
+  floatingThoughtOpacity,
+  floatingThoughts,
+} from '../../common/constants/animation'
 import type { FloatingThought, GoldParticlePosition } from '../../common/interfaces/animation'
 import type { Language, Theme } from '../../common/types/application'
 import {
@@ -20,10 +25,15 @@ const props = defineProps<{
 }>()
 
 const streamContainer = ref<HTMLElement>()
+const displayedLanguage = ref<Language>(props.language)
 
 let animationFrameId: number | undefined
 let lastFrameTime = 0
 let activeThoughts: FloatingThought[] = []
+let languageTransition: gsap.core.Tween | undefined
+let resolveLanguageTransition: (() => void) | undefined
+let languageTransitionVersion = 0
+let isLanguageTransitioning = false
 
 function renderThought(thought: FloatingThought) {
   thought.element.style.transform = `translate3d(${thought.renderX}px, ${thought.renderY}px, 0)`
@@ -48,9 +58,9 @@ function resetThought(thought: FloatingThought, shouldFadeIn = true) {
   gsap.killTweensOf(thought.element, 'opacity')
   const targetOpacity = floatingThoughtOpacity[props.theme]
 
-  gsap.set(thought.element, { autoAlpha: shouldFadeIn ? 0 : targetOpacity })
+  gsap.set(thought.element, { autoAlpha: shouldFadeIn || isLanguageTransitioning ? 0 : targetOpacity })
 
-  if (shouldFadeIn) {
+  if (shouldFadeIn && !isLanguageTransitioning) {
     gsap.to(thought.element, {
       autoAlpha: targetOpacity,
       duration: floatingThoughtConfig.fadeDuration,
@@ -153,6 +163,8 @@ function updateThoughtMeasurements() {
 }
 
 function updateThoughtOpacity() {
+  if (isLanguageTransitioning) return
+
   const targetOpacity = floatingThoughtOpacity[props.theme]
 
   activeThoughts.forEach((thought) => {
@@ -167,27 +179,88 @@ function updateThoughtOpacity() {
   })
 }
 
+function stopLanguageTransition() {
+  languageTransition?.kill()
+  languageTransition = undefined
+  resolveLanguageTransition?.()
+  resolveLanguageTransition = undefined
+  isLanguageTransitioning = false
+}
+
+function fadeOutThoughts(): Promise<void> {
+  return new Promise((resolve) => {
+    resolveLanguageTransition = resolve
+    languageTransition = gsap.to(activeThoughts.map((thought) => thought.element), {
+      autoAlpha: 0,
+      duration: floatingThoughtLanguageTransition.fadeOutDuration,
+      ease: 'sine.in',
+      stagger: floatingThoughtLanguageTransition.staggerDuration,
+      onComplete: () => {
+        languageTransition = undefined
+        resolveLanguageTransition = undefined
+        resolve()
+      },
+    })
+  })
+}
+
+function fadeInThoughts() {
+  languageTransition = gsap.to(activeThoughts.map((thought) => thought.element), {
+    autoAlpha: floatingThoughtOpacity[props.theme],
+    duration: floatingThoughtLanguageTransition.fadeInDuration,
+    ease: 'sine.out',
+    stagger: floatingThoughtLanguageTransition.staggerDuration,
+    onComplete: () => {
+      languageTransition = undefined
+      isLanguageTransitioning = false
+    },
+  })
+}
+
+async function transitionThoughtLanguage(language: Language) {
+  const transitionVersion = ++languageTransitionVersion
+  stopLanguageTransition()
+
+  if (prefersReducedMotion() || activeThoughts.length === 0) {
+    displayedLanguage.value = language
+    await nextTick()
+    updateThoughtMeasurements()
+    return
+  }
+
+  isLanguageTransitioning = true
+  await fadeOutThoughts()
+
+  if (transitionVersion !== languageTransitionVersion) return
+
+  displayedLanguage.value = language
+  await nextTick()
+
+  if (transitionVersion !== languageTransitionVersion) return
+
+  updateThoughtMeasurements()
+  fadeInThoughts()
+}
+
 onMounted(() => {
   window.addEventListener('resize', startPhysics)
   startPhysics()
 })
 
-watch(() => props.language, async () => {
-  await nextTick()
-  updateThoughtMeasurements()
-})
+watch(() => props.language, transitionThoughtLanguage)
 
 watch(() => props.theme, updateThoughtOpacity)
 
 onBeforeUnmount(() => {
   window.removeEventListener('resize', startPhysics)
+  stopLanguageTransition()
   stopPhysics()
 })
 </script>
 
 <template>
   <div ref="streamContainer" class="thought-stream" aria-hidden="true">
-    <span v-for="(thought, thoughtId) in floatingThoughts[language]" :key="thoughtId" class="thought-stream__item">
+    <span v-for="(thought, thoughtId) in floatingThoughts[displayedLanguage]" :key="thoughtId" class="thought-stream__item">
       {{ thought }}
     </span>
   </div>

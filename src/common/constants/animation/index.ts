@@ -20,6 +20,12 @@ export const floatingThoughtOpacity: Record<Theme, number> = {
   dark: 0.22,
 }
 
+export const floatingThoughtLanguageTransition = {
+  fadeOutDuration: 0.22,
+  fadeInDuration: 0.5,
+  staggerDuration: 0.035,
+} as const
+
 export const floatingThoughts: Record<Language, Record<FloatingThoughtId, string>> = {
   uk: {
     calm: 'спокій', hope: 'надія', strength: 'сила', warmth: 'тепло',
