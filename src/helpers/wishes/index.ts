@@ -12,14 +12,22 @@ export function buildWishes(language: Language): string[] {
   ]
 }
 
-export function createWish(wishes: LocalizedWishes, language: Language, previousText = ''): Wish {
-  const availableWishes = wishes[language].filter((wish) => wish !== previousText)
-  const randomIndex = Math.floor(Math.random() * availableWishes.length)
-  const text = availableWishes[randomIndex] ?? wishes[language][0]
+export function getWishByIndex(wishes: LocalizedWishes, language: Language, index: number): Wish {
+  const text = wishes[language][index]
 
   if (!text) {
     throw new Error('Wish collection must not be empty')
   }
 
-  return { text, author: wishAuthors[language] }
+  return { index, text, author: wishAuthors[language] }
+}
+
+export function createWish(wishes: LocalizedWishes, language: Language, previousIndex?: number): Wish {
+  const availableIndexes = wishes[language]
+    .map((_, index) => index)
+    .filter((index) => index !== previousIndex)
+  const randomIndex = Math.floor(Math.random() * availableIndexes.length)
+  const index = availableIndexes[randomIndex] ?? 0
+
+  return getWishByIndex(wishes, language, index)
 }

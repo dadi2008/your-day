@@ -3,18 +3,21 @@ import { storageKeys } from '../common/constants/application'
 import { wishes } from '../common/constants/wishes'
 import type { Language } from '../common/types/application'
 import { getStoredLanguage, getStoredTheme } from '../helpers/application'
-import { createWish } from '../helpers/wishes'
+import { createWish, getWishByIndex } from '../helpers/wishes'
 
 export const useWishStore = defineStore('wish', {
-  state: () => ({
-    language: getStoredLanguage(),
-    theme: getStoredTheme(),
-    wish: createWish(wishes, 'uk'),
-  }),
+  state: () => {
+    const language = getStoredLanguage()
+
+    return {
+      language,
+      theme: getStoredTheme(),
+      wish: createWish(wishes, language),
+    }
+  },
   actions: {
     initialize() {
       this.applyTheme()
-      this.showNextWish()
     },
     applyTheme() {
       document.documentElement.dataset.theme = this.theme
@@ -29,10 +32,10 @@ export const useWishStore = defineStore('wish', {
       if (language === this.language) return
       this.language = language
       localStorage.setItem(storageKeys.language, language)
-      this.showNextWish()
+      this.wish = getWishByIndex(wishes, language, this.wish.index)
     },
     showNextWish() {
-      this.wish = createWish(wishes, this.language, this.wish.text)
+      this.wish = createWish(wishes, this.language, this.wish.index)
     },
   },
 })
