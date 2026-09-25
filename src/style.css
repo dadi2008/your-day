@@ -1,0 +1,102 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,600;1,500;1,600&display=swap');
+
+:root {
+  font-family: 'DM Sans', Arial, sans-serif;
+  color: #f4f0e9;
+  background: #1c1b2a;
+  color-scheme: dark;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+}
+
+:root[data-theme='light'] {
+  color: #25213a;
+  background: #f7f4ed;
+  color-scheme: light;
+}
+
+:root[data-theme='dark'] {
+  color: #f4f0e9;
+  background: #1c1b2a;
+  color-scheme: dark;
+}
+
+* { box-sizing: border-box; }
+body { min-width: 320px; min-height: 100svh; margin: 0; }
+button { font: inherit; }
+button:focus-visible, a:focus-visible { outline: 3px solid #c18c4c; outline-offset: 3px; }
+
+.page-shell {
+  --journey-first-light: rgba(238, 197, 115, 0.26);
+  --journey-second-light: rgba(203, 171, 221, 0.3);
+  --journey-background: #f7f4ed;
+  position: relative;
+  min-height: 100svh;
+  padding: 28px clamp(20px, 7vw, 110px) 44px;
+  overflow: hidden;
+  background:
+    radial-gradient(circle at 8% 20%, var(--journey-first-light), transparent 25rem),
+    radial-gradient(circle at 92% 83%, var(--journey-second-light), transparent 28rem),
+    var(--journey-background);
+  transition: background 900ms ease;
+}
+
+:root[data-theme='dark'] .page-shell {
+  --journey-first-light: rgba(203, 153, 77, 0.16);
+  --journey-second-light: rgba(135, 105, 175, 0.19);
+  --journey-background: #1c1b2a;
+}
+
+.page-shell[data-time-of-day='morning'] {
+  --journey-first-light: rgba(255, 199, 108, 0.36);
+  --journey-second-light: rgba(249, 178, 139, 0.22);
+}
+
+.page-shell[data-time-of-day='day'] {
+  --journey-first-light: rgba(144, 198, 232, 0.25);
+  --journey-second-light: rgba(238, 211, 143, 0.3);
+}
+
+.page-shell[data-time-of-day='evening'] {
+  --journey-first-light: rgba(236, 143, 109, 0.3);
+  --journey-second-light: rgba(151, 103, 187, 0.27);
+}
+
+.page-shell[data-time-of-day='night'] {
+  --journey-first-light: rgba(98, 111, 178, 0.24);
+  --journey-second-light: rgba(115, 78, 148, 0.25);
+}
+
+:root[data-theme='dark'] .page-shell[data-time-of-day='morning'] {
+  --journey-first-light: rgba(218, 151, 72, 0.2);
+  --journey-second-light: rgba(184, 91, 86, 0.14);
+}
+
+:root[data-theme='dark'] .page-shell[data-time-of-day='day'] {
+  --journey-first-light: rgba(78, 133, 180, 0.18);
+  --journey-second-light: rgba(207, 163, 80, 0.14);
+}
+
+:root[data-theme='dark'] .page-shell[data-time-of-day='evening'] {
+  --journey-first-light: rgba(198, 92, 68, 0.2);
+  --journey-second-light: rgba(116, 74, 160, 0.22);
+}
+
+:root[data-theme='dark'] .page-shell[data-time-of-day='night'] {
+  --journey-first-light: rgba(77, 85, 154, 0.22);
+  --journey-second-light: rgba(97, 62, 132, 0.25);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+  }
+}
+
+@media (max-width: 560px) {
+  .page-shell { padding-top: 21px; }
+}

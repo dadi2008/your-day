@@ -1,0 +1,31 @@
+.thought-stream {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.thought-stream__item {
+  position: absolute;
+  top: 0;
+  left: 0;
+  color: #69455e;
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: clamp(1rem, 2.5vw, 1.65rem);
+  font-style: italic;
+  letter-spacing: 0.04em;
+  opacity: 0;
+  text-shadow: 0 2px 14px rgba(105, 69, 94, 0.18);
+  white-space: nowrap;
+  will-change: transform, opacity;
+}
+
+:root[data-theme='dark'] .thought-stream__item {
+  color: #d8bb80;
+  text-shadow: 0 2px 14px rgba(216, 187, 128, 0.12);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .thought-stream { display: none; }
+}

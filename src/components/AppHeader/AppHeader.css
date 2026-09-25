@@ -1,0 +1,76 @@
+.topbar {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  max-width: 1180px;
+  margin: 0 auto;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.brand {
+  color: inherit;
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: 1.35rem;
+  font-weight: 600;
+  letter-spacing: -0.04em;
+  text-decoration: none;
+}
+
+.controls, .language-switcher { display: flex; align-items: center; }
+.controls { gap: 10px; }
+
+.language-switcher {
+  gap: 2px;
+  padding: 3px;
+  border: 1px solid rgba(65, 55, 94, 0.13);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.46);
+}
+
+:root[data-theme='dark'] .language-switcher {
+  border-color: rgba(255, 255, 255, 0.14);
+  background: rgba(255, 255, 255, 0.06);
+}
+
+.language-switcher button, .theme-button {
+  border: 0;
+  cursor: pointer;
+  color: inherit;
+}
+
+.language-switcher button {
+  min-width: 36px;
+  padding: 6px 8px;
+  border-radius: 999px;
+  background: transparent;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  opacity: 0.6;
+}
+
+.language-switcher button.active {
+  background: #fffdf8;
+  box-shadow: 0 2px 8px rgba(67, 53, 98, 0.12);
+  opacity: 1;
+}
+
+:root[data-theme='dark'] .language-switcher button.active {
+  color: #262135;
+  background: #f4f0e9;
+}
+
+.theme-button {
+  display: grid;
+  width: 38px;
+  height: 38px;
+  place-items: center;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.46);
+  font-size: 1.2rem;
+  transition: transform 180ms ease, background 180ms ease;
+}
+
+:root[data-theme='dark'] .theme-button { background: rgba(255, 255, 255, 0.08); }
+.theme-button:hover { transform: translateY(-2px); }

@@ -1,0 +1,33 @@
+.morning-light {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.morning-light__orb {
+  position: absolute;
+  width: clamp(260px, 38vw, 620px);
+  aspect-ratio: 1;
+  border-radius: 50%;
+  filter: blur(42px);
+  opacity: 0.28;
+}
+
+.morning-light__orb--first { top: -18%; left: -14%; background: #ffd480; }
+.morning-light__orb--second { top: 48%; right: -18%; background: #c09be0; }
+
+.morning-light__orb--third {
+  top: 28%;
+  left: 35%;
+  width: clamp(180px, 24vw, 380px);
+  background: #f7b59a;
+  opacity: 0.14;
+}
+
+:root[data-theme='dark'] .morning-light__orb { opacity: 0.14; }
+
+@media (prefers-reduced-motion: reduce) {
+  .morning-light { display: none; }
+}

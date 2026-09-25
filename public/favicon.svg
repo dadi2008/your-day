@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <defs>
+    <linearGradient id="background" x1="8" y1="6" x2="58" y2="60" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#3e3155"/>
+      <stop offset="1" stop-color="#1f2031"/>
+    </linearGradient>
+    <radialGradient id="sun" cx="0" cy="0" r="1" gradientTransform="translate(32 27) rotate(90) scale(17)">
+      <stop stop-color="#fff4c7"/>
+      <stop offset="1" stop-color="#d89e45"/>
+    </radialGradient>
+    <filter id="glow" x="10" y="4" width="44" height="44" filterUnits="userSpaceOnUse">
+      <feGaussianBlur stdDeviation="3"/>
+    </filter>
+  </defs>
+  <rect width="64" height="64" rx="18" fill="url(#background)"/>
+  <circle cx="32" cy="27" r="15" fill="#e7b962" opacity=".42" filter="url(#glow)"/>
+  <circle cx="32" cy="27" r="12" fill="url(#sun)"/>
+  <path fill="#342a49" d="M27 23.5c-2.9 1.2-4.5 3.3-4.5 6.2 0 2.5 1.5 4.4 3.8 4.4 1.7 0 3-1.2 3-2.8 0-1.5-1-2.5-2.3-2.5-.4 0-.8.1-1.1.3.3-1.5 1.3-2.7 3.6-3.7L27 23.5Zm11 0c-2.9 1.2-4.5 3.3-4.5 6.2 0 2.5 1.5 4.4 3.8 4.4 1.7 0 3-1.2 3-2.8 0-1.5-1-2.5-2.3-2.5-.4 0-.8.1-1.1.3.3-1.5 1.3-2.7 3.6-3.7L38 23.5Z"/>
+  <path d="M17 45c4.3-3.7 8.6-5.5 15-5.5S42.7 41.3 47 45" fill="none" stroke="#f0c777" stroke-linecap="round" stroke-width="3"/>
+  <circle cx="14" cy="17" r="1.5" fill="#f0c777"/>
+  <circle cx="51" cy="16" r="1" fill="#f0c777"/>
+</svg>
