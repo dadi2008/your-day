@@ -1,5 +1,6 @@
 import { defineStore } from 'pinia'
 import { storageKeys } from '../common/constants/application'
+import { wishes } from '../common/constants/wishes'
 import type { Language } from '../common/types/application'
 import { getStoredLanguage, getStoredTheme } from '../helpers/application'
 import { createWish } from '../helpers/wishes'
@@ -8,7 +9,7 @@ export const useWishStore = defineStore('wish', {
   state: () => ({
     language: getStoredLanguage(),
     theme: getStoredTheme(),
-    wish: createWish('uk'),
+    wish: createWish(wishes, 'uk'),
   }),
   actions: {
     initialize() {
@@ -31,7 +32,7 @@ export const useWishStore = defineStore('wish', {
       this.showNextWish()
     },
     showNextWish() {
-      this.wish = createWish(this.language, this.wish.text)
+      this.wish = createWish(wishes, this.language, this.wish.text)
     },
   },
 })

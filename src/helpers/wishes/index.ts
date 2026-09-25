@@ -1,8 +1,18 @@
-import { wishAuthors, wishes } from '../../common/constants/wishes'
 import type { Wish } from '../../common/interfaces/quotes'
 import type { Language } from '../../common/types/application'
+import type { LocalizedWishes } from '../../common/types/quotes'
+import { baseWishes, wishAuthors, wishIntents, wishTemplates } from '../../data/wishes'
 
-export function createWish(language: Language, previousText = ''): Wish {
+export function buildWishes(language: Language): string[] {
+  return [
+    ...baseWishes[language],
+    ...wishTemplates[language].flatMap((template) =>
+      wishIntents[language].map((wish) => template.replace('{wish}', wish)),
+    ),
+  ]
+}
+
+export function createWish(wishes: LocalizedWishes, language: Language, previousText = ''): Wish {
   const availableWishes = wishes[language].filter((wish) => wish !== previousText)
   const randomIndex = Math.floor(Math.random() * availableWishes.length)
   const text = availableWishes[randomIndex] ?? wishes[language][0]
